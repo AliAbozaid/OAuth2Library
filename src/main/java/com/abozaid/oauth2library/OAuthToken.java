@@ -28,6 +28,10 @@ public class OAuthToken {
     private final String REFRESH_TOKEN="REFRESH_TOKEN";
     private final String EXPIRATION_DATE="EXPIRATION_DATE";
     private final String OAUTH_PREFERENCE = "OAUTH_PREFERENCE";
+
+    private final String EXPIRED="EXPIRED";
+    private final String ADDITIONAL_INFORMATION="ADDITIONAL_INFORMATION";
+    private final String EXPIRATION="EXPIRATION";
     public SharedPreferences.Editor editor;
     String baseUrl, clientID, secret;
     String basicAuth;
@@ -173,8 +177,10 @@ public class OAuthToken {
             editor = sharedpreferences.edit();
             editor.putString(ACCESS_TOKEN, credential.getAccess_token());
             editor.putString(TOKEN_TYPE, credential.getToken_type());
-            //editor.putString(EXPIRATION_DATE, credential.expires_in);//plus current time
+            editor.putString(EXPIRED, credential.getExpired());
+            editor.putString(EXPIRATION, credential.getExpiration());
             editor.putString(REFRESH_TOKEN, credential.getRefresh_token());
+            editor.putString(ADDITIONAL_INFORMATION, credential.getAdditionalInformation());
             editor.commit();
             saveExpiryDate(credential.getExpires_in(), "default");
         }
@@ -183,8 +189,11 @@ public class OAuthToken {
             sharedpreferences = context.getSharedPreferences(id, Context.MODE_PRIVATE);
             editor = sharedpreferences.edit();
             editor.putString(ACCESS_TOKEN, credential.getAccess_token());
-            //editor.putString(EXPIRATION_DATE, credential.expires_in);//plus current time
+            editor.putString(TOKEN_TYPE, credential.getToken_type());
+            editor.putString(EXPIRED, credential.getExpired());
+            editor.putString(EXPIRATION, credential.getExpiration());
             editor.putString(REFRESH_TOKEN, credential.getRefresh_token());
+            editor.putString(ADDITIONAL_INFORMATION, credential.getAdditionalInformation());
             editor.commit();
             saveExpiryDate(credential.getExpires_in(), id);
         }
@@ -203,6 +212,9 @@ public class OAuthToken {
             credential.setExpires_in(sharedpreferences.getLong(EXPIRATION_DATE, -1));
             credential.setRefresh_token(sharedpreferences.getString(REFRESH_TOKEN, null));
             credential.setToken_type(sharedpreferences.getString(TOKEN_TYPE, null));
+            credential.setExpired(sharedpreferences.getString(EXPIRED, null));
+            credential.setExpiration(sharedpreferences.getString(EXPIRATION, null));
+            credential.setAdditionalInformation(sharedpreferences.getString(ADDITIONAL_INFORMATION, null));
 
             return  credential;
         }
@@ -214,6 +226,9 @@ public class OAuthToken {
             credential.setExpires_in(sharedpreferences.getLong(EXPIRATION_DATE, -1));
             credential.setRefresh_token(sharedpreferences.getString(REFRESH_TOKEN, null));
             credential.setToken_type(sharedpreferences.getString(TOKEN_TYPE, null));
+            credential.setExpired(sharedpreferences.getString(EXPIRED, null));
+            credential.setExpiration(sharedpreferences.getString(EXPIRATION, null));
+            credential.setAdditionalInformation(sharedpreferences.getString(ADDITIONAL_INFORMATION, null));
 
             return  credential;
         }
