@@ -75,7 +75,7 @@ maven {
 ```
 and this in dependencies
 ```
-compile 'com.github.aliabozaid.oauth2library:OAuth2Library:0.0.1'
+compile 'com.github.aliabozaid.oauth2library:OAuth2Library:0.0.2'
 ```
 
 
