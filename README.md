@@ -66,6 +66,17 @@ getTokenwithId(id) return Token String.
 getRefreshTokenWithId(id) return RefreshToken String.
 getExpiryDateWithId(id) return expiryDate Long.
 
+# Gradle
+add this in repositories
+```
+maven {
+       url 'https://dl.bintray.com/abozaid/maven'
+   }
+```
+and this in dependencies
+```
+compile 'com.github.aliabozaid.oauth2library:OAuth2Library:0.0.1'
+```
 
 
 
