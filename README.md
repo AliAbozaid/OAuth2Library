@@ -1,8 +1,9 @@
 # OAuth2Library
 OAuth2Library is an extension for Retrofit that simplifies the process of authenticating against an OAuth 2 provider.
 # Authentication
-
+```
 OAuthToken oAuthToken = new OAuthToken("http://www.yoururl.com/","abozaid","1234567", this);
+```
 1) Base URL.
 2) Client ID.
 3) Secret key.
@@ -12,7 +13,7 @@ OAuthToken oAuthToken = new OAuthToken("http://www.yoururl.com/","abozaid","1234
 Credential credential = oAuthToken.getAccessTokenWithID("default");
 
 If you want to use our default send parameter “default” if not send your keys.
-
+```
 if(credential == null || credential.getAccess_token()==null)
  {
     oAuthToken.AuthentiacteUsingOAuth("v1/api/oauth", "5592b3be0cf2921ec587d5",
@@ -33,6 +34,7 @@ if(credential == null || credential.getAccess_token()==null)
             }
         });
  }
+ ```
 
 
 We first check our credential if it does not exist we call (AuthentiacteUsingOAuth) method to authenticate and here is it’s parameters:
