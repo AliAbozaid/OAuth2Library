@@ -43,12 +43,14 @@ If you want to use our default send parameter “default” if not send your key
 
 
 We first check our credential if it does not exist we call (AuthentiacteUsingOAuth) method to authenticate and here is it’s parameters:
+
 1. path URL, and here we follow the standards., if your backend developer follow it, all you need is to put your path url except for (/token). if not, you need to clone the repo and import it as a module and change the URL.
 2. UserName, your username returned from the server after the registration process.
 3. Password,  your password returned from the server after the registration process.
 4. Scope, it will be one of three choices(read, write, read write).
 5. Grant type, it will be one of three choices(password, authorization_code, client_credential, refresh_token).
 6. Response callback.
+
 
 ## Storing Credentials
 if our credential returned in success method we call (saveTokenWithID) method and we pass the credential object and our id (“default”, or your id ).
