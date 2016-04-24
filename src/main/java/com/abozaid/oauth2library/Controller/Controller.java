@@ -3,42 +3,43 @@ package com.abozaid.oauth2library.Controller;
 
 import com.abozaid.oauth2library.Model.Credential;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.http.Field;
-import retrofit.http.FormUrlEncoded;
-import retrofit.http.Header;
-import retrofit.http.Headers;
-import retrofit.http.POST;
-import retrofit.http.Query;
+import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
+
 
 /**
  * Created by aliabozaid on 8/3/15.
  */
 public class Controller {
-    public interface MethodsCallback<T>{
-        public void failure(RetrofitError arg0);
+    public interface MethodsCallback<T> {
+        public void failure(Throwable arg0);
+
         public void success(T arg0);
+
+        public void responseBody(Call<T> call);
     }
 
-    public interface getAccessTokens {
+    public interface GetAccessToken {
         @POST("/token?filters[0][operator]=equals")
         @FormUrlEncoded
         @Headers({"Accept: application/json"})
-        void get_access_token(@Query("grant_type") String grant_type,
-                              @Field("username") String username,
-                              @Field("password") String password,
-                              @Field("scope") String scope,
-                              @Header("Authorization") String authorization,
-                              Callback<Credential> callback);
+        Call<Credential> getAccessToken(@Query("grant_type") String grant_type,
+                                        @Field("username") String username,
+                                        @Field("password") String password,
+                                        @Field("scope") String scope,
+                                        @Header("Authorization") String authorization);
     }
 
-    public interface refreshToken {
+    public interface RefreshToken {
         @FormUrlEncoded
         @POST("/token?filters[0][operator]=equals")
-        void refresh_token(@Query("grant_type") String grant_type,
-                           @Field("refresh_token") String refreshToken,
-                           @Header("Authorization") String authorization,
-                           Callback<Credential> callback);
+        Call<Credential> refreshToken(@Query("grant_type") String grant_type,
+                                      @Field("refresh_token") String refreshToken,
+                                      @Header("Authorization") String authorization);
     }
 }

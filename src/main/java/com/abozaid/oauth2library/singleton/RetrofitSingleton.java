@@ -1,21 +1,23 @@
 package com.abozaid.oauth2library.singleton;
 
-import retrofit.RestAdapter;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitSingleton {
-	private static RestAdapter restAdapter = null;
+    private static Retrofit restAdapter = null;
 
-	private RetrofitSingleton() {
+    private RetrofitSingleton() {
 
-	}
+    }
 
-	public static RestAdapter getInstance(String Url) {
-		if (restAdapter == null) {
-			restAdapter = new RestAdapter.Builder().setEndpoint(Url)
-					//.setLogLevel(RestAdapter.LogLevel.FULL)
-					.build();
-		}
-		return restAdapter;
-	}
+    public static Retrofit getInstance(String url) {
+        if (restAdapter == null) {
+            restAdapter = new Retrofit.Builder()
+                    .baseUrl(url)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return restAdapter;
+    }
 
 }
