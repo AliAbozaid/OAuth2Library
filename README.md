@@ -52,13 +52,16 @@ We first check our credential if it does not exist we call (AuthentiacteUsingOAu
 
 ## Storing Credentials
 if our credential returned in success method we call (saveTokenWithID) method and we pass the credential object and our id (“default”, or your id ).
+
 ## Refreshing Credentials
 
-before any call to the server we call (isExpired(id)) method, if  it returns false we do our call but if it  returns true that means that we need to refresh our token so we need to call (refreshToken()) method and it’s parameter:
+Before any call to the server we call (isExpired(id)) method, if  it returns false we do our call but if it  returns true that means that we need to refresh our token so we need to call (refreshToken()) method and it’s parameter:
+
 1. Path URL, same as in (AuthentiacteUsingOAuth)method path url except for  (/token).
 2. Refresh token, get it by calling(getRefreshTokenWithId(id)) after storing it in (AuthentiacteUsingOAuth) method.
 3. Response callback.
 also you need to call  (saveTokenWithID) method in success method to save your new credentials.
+
 
 ## Delete Credentials
 There is Two Methods To delete your Credential
@@ -80,7 +83,7 @@ maven {
 ```
 and this in dependencies
 ```
-compile 'com.github.aliabozaid.oauth2library:OAuth2Library:0.0.2'
+compile 'com.github.aliabozaid.oauth2library:OAuth2Library:0.0.3’
 ```
 
 ## License
