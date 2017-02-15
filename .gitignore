@@ -10,3 +10,5 @@ proguard-rules.pro
 usage
 .idea
 :
+
+.gradle/
